@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(filename='TemplateCreation.log', filemode='a', level=logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 
 project_name = 'cnnClassifier'
 
@@ -39,4 +39,4 @@ for file in list_of_files:
             logging.info(f"Creating empty file {file}")
         
     else:
-        logging.warning(f"{file} already exist")
+        logging.info(f"{file} already exist")

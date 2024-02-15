@@ -1,5 +1,4 @@
 import os
-from box import BoxValueError
 from box.exceptions import BoxValueError
 import yaml
 from cnnClassifier import logger
