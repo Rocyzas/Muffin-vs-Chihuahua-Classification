@@ -3,6 +3,9 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://github.com/Rocyzas/data_repo/blob/master/muffin-vs-chihuahua/c1.zip
-  local_data_file: artifacts/data_ingestion/data.zip
+  source_URL: https://github.com/Rocyzas/data_repo/raw/master/muffin-vs-chihuahua/
+  local_data_file_c: artifacts/data_ingestion/data-c.zip
+  local_data_file_m: artifacts/data_ingestion/data-m.zip
   unzip_dir: artifacts/data_ingestion
+  num_chihuahua_files: 3
+  num_muffin_files: 4
