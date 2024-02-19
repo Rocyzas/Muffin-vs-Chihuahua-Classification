@@ -1,0 +1,13 @@
+ __pycache__/
+ *.pyc
+ *.ipynb
+
+.vscode/
+.ipynb_checkpoints/
+src/cnnClassifier.egg-info/
+
+artifacts/*
+research/*
+logs/*
+
+TemplateCreation.log
