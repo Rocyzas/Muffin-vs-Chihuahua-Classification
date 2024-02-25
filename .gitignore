@@ -12,3 +12,6 @@ research/*
 logs/*
 
 TemplateCreation.log
+
+prepare_base_model/*
+

@@ -5,4 +5,6 @@ End-to-end ML project with deployment
 
 
 # todo:
-- git ignore
+- ~~git ignore~~
+- fix the directories for artifacts
+ 
