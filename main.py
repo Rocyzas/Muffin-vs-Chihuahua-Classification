@@ -14,7 +14,7 @@ try:
     data_ingestion = DataIngestionTrainingPipeline()
     data_ingestion.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-    logger.info(f"Elapsed Time: {int(time.time() - start)}s")
+    logger.info(f"Elapsed Time: {int(time.time() - start_time)}s")
 
 except Exception as e:
         logger.exception(e)
@@ -30,7 +30,7 @@ try:
     data_ingestion = PrepareBaseModelPipeline()
     data_ingestion.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-    logger.info(f"Elapsed Time: {int(time.time() - start)}s")
+    logger.info(f"Elapsed Time: {int(time.time() - start_time)}s")
 
 except Exception as e:
         logger.exception(e)
@@ -46,7 +46,7 @@ try:
     data_ingestion = TrainingModelPipeline()
     data_ingestion.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-    logger.info(f"Elapsed Time: {int(time.time() - start)}s")
+    logger.info(f"Elapsed Time: {int(time.time() - start_time)}s")
 
 except Exception as e:
         logger.exception(e)

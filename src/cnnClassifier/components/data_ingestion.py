@@ -46,9 +46,15 @@ class DataIngestion:
         
         for i in range(1, self.config.num_chihuahua_files + 1):
             local_zip_file = os.path.join(self.config.root_dir, f"data_c/c{i}.zip")
-            with zipfile.ZipFile(local_zip_file, 'r') as zip_ref:
-                zip_ref.extractall(unzip_dir)
-        print(f"Chihuahua files extracted to {unzip_dir}")
+            with zipfile.ZipFile(local_zip_file, 'r') as zip_file:
+                for member in zip_file.namelist():
+                    filename = os.path.basename(member)
+                    if not filename:
+                        continue
+                    source = zip_file.open(member)
+                    target_path = os.path.join(self.config.unzip_dir, 'c', filename)
+                    with source, open(target_path, "wb") as target:
+                        shutil.copyfileobj(source, target)
 
     def extract_muffin_files(self):
         unzip_dir = os.path.join(self.config.unzip_dir, 'm')
@@ -56,12 +62,33 @@ class DataIngestion:
         
         for i in range(1, self.config.num_muffin_files + 1):
             local_zip_file = os.path.join(self.config.root_dir, f"data_m/m{i}.zip")
-            with zipfile.ZipFile(local_zip_file, 'r') as zip_ref:
-                zip_ref.extractall(unzip_dir)
-        print(f"Muffin files extracted to {unzip_dir}")
+            with zipfile.ZipFile(local_zip_file, 'r') as zip_file:
+                for member in zip_file.namelist():
+                    filename = os.path.basename(member)
+                    if not filename:
+                        continue
+                    source = zip_file.open(member)
+                    target_path = os.path.join(self.config.unzip_dir, 'm', filename)
+                    with source, open(target_path, "wb") as target:
+                        shutil.copyfileobj(source, target)
     
     def cleanup_zips(self):
-        shutil.rmtree(os.path.join(self.config.root_dir, "data_c"))
-        shutil.rmtree(os.path.join(self.config.root_dir, "data_m"))
-        shutil.rmtree(os.path.join(self.config.root_dir, 'c/__MACOSX'))
-        shutil.rmtree(os.path.join(self.config.root_dir, 'm/__MACOSX'))
+        try:
+            shutil.rmtree(os.path.join(self.config.root_dir, "data_c"))
+        except FileNotFoundError:
+            pass
+
+        try:
+            shutil.rmtree(os.path.join(self.config.root_dir, "data_m"))
+        except FileNotFoundError:
+            pass
+
+        try:
+            shutil.rmtree(os.path.join(self.config.root_dir, 'c/__MACOSX'))
+        except FileNotFoundError:
+            pass
+
+        try:
+            shutil.rmtree(os.path.join(self.config.root_dir, 'm/__MACOSX'))
+        except FileNotFoundError:
+            pass
