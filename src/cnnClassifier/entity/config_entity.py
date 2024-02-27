@@ -11,7 +11,12 @@ class DataIngestionConfig:
     num_chihuahua_files: int
     num_muffin_files: int
 
-
+@dataclass(frozen=True)
+class DataPreparationConfig:
+    root_dir: Path
+    local_data_file_c: Path
+    local_data_file_m: Path
+    
 @dataclass(frozen=True)
 class PrepareBaseModelConfig:
     root_dir: Path

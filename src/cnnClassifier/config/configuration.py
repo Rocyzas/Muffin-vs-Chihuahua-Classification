@@ -2,6 +2,7 @@ from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
 from cnnClassifier.entity.config_entity import (
                                             DataIngestionConfig, 
+                                            DataPreparationConfig,
                                             PrepareBaseModelConfig, 
                                             PrepareCallbacksConfig,
                                             TrainingConfig)
@@ -36,6 +37,19 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    def get_data_preparation_config(self) -> DataPreparationConfig:
+        config = self.config.data_preparation
+
+        create_directories([config.root_dir])
+
+        data_preparation_config = DataPreparationConfig(
+            root_dir=config.root_dir,
+            local_data_file_c=config.local_data_file_c,
+            local_data_file_m=config.local_data_file_m
+        )
+
+        return data_preparation_config
 
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model

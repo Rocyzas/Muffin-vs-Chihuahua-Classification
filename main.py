@@ -2,7 +2,8 @@ import time
 from src.cnnClassifier import logger
 from tracemalloc import start
 from cnnClassifier.pipeline.stage_03_training_model import TrainingModelPipeline
-from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionPipeline
+from cnnClassifier.pipeline.stage_01B_data_preparation import DataPreparationPipeline
 from cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelPipeline
 
 
@@ -11,7 +12,23 @@ STAGE_NAME = "Data Ingestion stage"
 try:
     start_time = time.time()
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
-    data_ingestion = DataIngestionTrainingPipeline()
+    data_ingestion = DataIngestionPipeline()
+    data_ingestion.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    logger.info(f"Elapsed Time: {int(time.time() - start_time)}s")
+
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+
+STAGE_NAME = "Data Preparation stage"
+
+try:
+    start_time = time.time()
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+    data_ingestion = DataPreparationPipeline()
     data_ingestion.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     logger.info(f"Elapsed Time: {int(time.time() - start_time)}s")

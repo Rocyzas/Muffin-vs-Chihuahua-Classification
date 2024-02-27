@@ -10,6 +10,11 @@ data_ingestion:
   num_chihuahua_files: 3
   num_muffin_files: 4
 
+data_preparation:
+  root_dir: artifacts/data_ingestion
+  local_data_file_c: artifacts/data_ingestion/c/
+  local_data_file_m: artifacts/data_ingestion/m/
+
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
   base_model_path: artifacts/prepare_base_model/base_model.h5
