@@ -1,3 +1,4 @@
+from pathlib import Path
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
 from cnnClassifier.entity.config_entity import (
@@ -5,7 +6,8 @@ from cnnClassifier.entity.config_entity import (
                                             DataPreparationConfig,
                                             PrepareBaseModelConfig, 
                                             PrepareCallbacksConfig,
-                                            TrainingConfig)
+                                            TrainingConfig,
+                                            EvaluationConfig)
 import os
 
 class ConfigurationManager:
@@ -106,3 +108,13 @@ class ConfigurationManager:
         )
 
         return training_config
+
+    def get_validation_config(self) -> EvaluationConfig:
+        eval_config = EvaluationConfig(
+            path_of_model=Path(self.config.training.trained_model_path),
+            training_data=Path(self.config.data_preparation.root_dir),
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+        return eval_config
