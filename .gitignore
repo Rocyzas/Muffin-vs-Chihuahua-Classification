@@ -14,4 +14,4 @@ logs/*
 TemplateCreation.log
 
 prepare_base_model/*
-
+src/logs/running_logs.log
